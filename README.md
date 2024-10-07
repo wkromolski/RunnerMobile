@@ -1,2 +1,1 @@
-# WildWestRunnerProjekt
-Programowanie w silnikach gier - Grupa 4
+Projektowanie gier na urządzenia przenośne
