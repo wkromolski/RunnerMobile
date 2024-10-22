@@ -20,60 +20,80 @@ public class PlayerController : MonoBehaviour
 
     private bool isJumping = false;
 
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
 
-    void Update()
+    private void Update()
     {
-
-
         Vector3 move = transform.position += transform.forward * forwardSpeed * Time.deltaTime;
-
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && jumpCounting < 1)
+        
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            jumpCounting++;
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isJumping = true;
-
-
+            startTouchPosition = Input.GetTouch(0).position;
         }
 
-
-        if (Input.GetKeyDown(KeyCode.DownArrow) && jumpCounting > 0)
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
-            jumpCounting--;
-            rb.AddForce(Vector3.down * downForce, ForceMode.Impulse);
+            endTouchPosition = Input.GetTouch(0).position;
+
+            Vector2 inputVector = endTouchPosition - startTouchPosition;
+            if(Mathf.Abs(inputVector.x) > Mathf.Abs(inputVector.y))
+            {
+                if(inputVector.x > 0)
+                {
+                    RightSwipe();
+                }
+                else
+                {
+                    LeftSwipe();
+                }
+            }
+            else
+            {
+                if (inputVector.y > 0)
+                {
+                    UpSwipe();
+                }
+                else
+                {
+                    DownSwipe();
+                }
+            }
         }
 
+    }
 
+    private void UpSwipe()
+    {
+        jumpCounting++;
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isJumping = true;
+    }
+    private void DownSwipe()
+    {
+        jumpCounting--;
+        rb.AddForce(Vector3.down * downForce, ForceMode.Impulse);
+    }
+    private void LeftSwipe()
+    {
+        desiredLane--;
+        if (desiredLane == -1)
+            desiredLane = 0;
 
+        ChangeLine();
+    }
+    private void RightSwipe()
+    {
+        desiredLane++;
+        if (desiredLane == 3)
+            desiredLane = 2;
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            desiredLane++;
-            if (desiredLane == 3)
-                desiredLane = 2;
-
-            ChangeLine();
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            desiredLane--;
-            if (desiredLane == -1)
-                desiredLane = 0;
-
-            ChangeLine();
-
-
-        }
-
-       
+        ChangeLine();
     }
 
     private void ChangeLine()
@@ -88,14 +108,10 @@ public class PlayerController : MonoBehaviour
         {
             targetPosition += Vector3.right * laneDistance;
         }
-
-
+        
         transform.position = targetPosition;
-
     }
-
-
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -110,4 +126,3 @@ public class PlayerController : MonoBehaviour
         return isJumping; 
     }
 }
-
