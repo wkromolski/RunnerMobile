@@ -9,15 +9,12 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject distanceCount;
     [SerializeField] private GameObject counter;
-
-
-
-
+    
 
     void Update()
     {
-        counter.GetComponent<TextMeshProUGUI>().text = "SCORE " + player.GetComponent<PlayerScore>().score.ToString();
+        counter.GetComponent<TextMeshProUGUI>().text = player.GetComponent<PlayerScore>().score.ToString();
         distanceCount.GetComponent<TextMeshProUGUI>().text =
-            "DISTANCE " + player.GetComponent<DistanceCounter>().distance.ToString("##.") + "m";
+            player.GetComponent<DistanceCounter>().distance.ToString("##.") + "m";
     }
 }

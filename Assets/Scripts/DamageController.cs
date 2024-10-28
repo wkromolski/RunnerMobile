@@ -8,7 +8,8 @@ public class DamageController : MonoBehaviour
     [SerializeField] private HealthController _healthController;
     [SerializeField] private Invulnerability _invulnerability;
     [SerializeField] private AudioSource hitSound;
-
+    [SerializeField] private GameObject lawnMower;
+    [SerializeField] private RestartController _restartController;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -24,9 +25,7 @@ public class DamageController : MonoBehaviour
 
     public void Damage()
     {
-        _healthController.playerHealth = _healthController.playerHealth - damage;
-        _healthController.UpdateHealth();
-
-
+        _restartController.Pause();
+        GetComponent<PlayerController>().enabled = false;
     }
 }
