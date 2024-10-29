@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5854110811224540147}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.65, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,7 +32,6 @@ Transform:
   m_Children:
   - {fileID: 6248537471105286043}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7135269088994020530
 MonoBehaviour:
@@ -46,12 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectible: {fileID: 6772449661556024609}
-  player: {fileID: 0}
+  collectSound: {fileID: 0}
+  isPowerUp: 1
 --- !u!1001 &5854110811249694832
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 5854110811224540148}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: dda8f32ce83be8c42a0c63f4d5a01147,
@@ -115,6 +117,21 @@ PrefabInstance:
       value: powerup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dda8f32ce83be8c42a0c63f4d5a01147,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3773962016351732117}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dda8f32ce83be8c42a0c63f4d5a01147,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5854110811193723178}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dda8f32ce83be8c42a0c63f4d5a01147,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2248060540397198882}
   m_SourcePrefab: {fileID: 100100000, guid: dda8f32ce83be8c42a0c63f4d5a01147, type: 3}
 --- !u!4 &6248537471105286043 stripped
 Transform:
@@ -136,14 +153,22 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6772449661556024609}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.1214826, y: 1.3345035, z: 0.08658668}
   m_Center: {x: -0.0062114606, y: 0.6230033, z: 0.0049917977}
 --- !u!95 &5854110811193723178
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,7 +185,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2248060540397198882
 MonoBehaviour:
   m_ObjectHideFlags: 0

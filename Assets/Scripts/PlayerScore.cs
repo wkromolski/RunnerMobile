@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class PlayerScore : MonoBehaviour
 {
-    public int score;
+    public int Score { get; private set; }
 
     void Start()
     {
-        score = 0;
+        Score = 0;
     }
 
-    public void AddScore()
+    public void AddScore(int points)
     {
-        score += 1;
-        
+        Score += points;
     }
 }

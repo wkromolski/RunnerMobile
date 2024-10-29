@@ -6,17 +6,26 @@ using UnityEngine;
 public class Collectibles : MonoBehaviour
 {
     [SerializeField] private GameObject collectible;
-    [SerializeField] private GameObject player;
     [SerializeField] private AudioSource collectSound;
-    
+    [SerializeField] private bool isPowerUp;  
+
+    private PlayerScore _playerScore;
+
+    void Start()
+    {
+        _playerScore = FindObjectOfType<PlayerScore>();  
+    }
+
     public void Collect()
     {
         collectible.SetActive(false);
         collectSound.Play();
+        AddPoints();
     }
 
-    public void AddPoints()
+    private void AddPoints()
     {
-        player.GetComponent<HealthController>().AddBonus();
+        int pointsToAdd = isPowerUp ? 5 : 1;  
+        _playerScore.AddScore(pointsToAdd);
     }
 }

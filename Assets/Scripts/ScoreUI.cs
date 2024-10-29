@@ -13,7 +13,7 @@ public class ScoreUI : MonoBehaviour
 
     void Update()
     {
-        counter.GetComponent<TextMeshProUGUI>().text = player.GetComponent<PlayerScore>().score.ToString();
+        counter.GetComponent<TextMeshProUGUI>().text = player.GetComponent<PlayerScore>().Score.ToString();
         distanceCount.GetComponent<TextMeshProUGUI>().text =
             player.GetComponent<DistanceCounter>().distance.ToString("##.") + "m";
     }

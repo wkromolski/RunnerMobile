@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DamageController : MonoBehaviour
 {
-    [SerializeField] private int damage = 1;
-    [SerializeField] private HealthController _healthController;
     [SerializeField] private Invulnerability _invulnerability;
     [SerializeField] private AudioSource hitSound;
     [SerializeField] private GameObject lawnMower;
