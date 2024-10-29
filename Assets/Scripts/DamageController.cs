@@ -8,7 +8,7 @@ public class DamageController : MonoBehaviour
     [SerializeField] private AudioSource hitSound;
     [SerializeField] private GameObject lawnMower;
     [SerializeField] private RestartController _restartController;
-    
+    [SerializeField] private ScoreUI scoreUI;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("DamageTrigger"))
@@ -25,5 +25,6 @@ public class DamageController : MonoBehaviour
     {
         _restartController.Pause();
         GetComponent<PlayerController>().enabled = false;
+        scoreUI.ShowFinalScore();
     }
 }
